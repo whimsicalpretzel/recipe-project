@@ -17,8 +17,8 @@ const samplePosts = [
     author: 'Daniel Bugl',
     imgurl: 'learnredux.org',
     description: 'learn redux',
-    ingredients: ['learn', 'redux'],
-    directions: ['go to website', 'learn redux'],
+    ingredients: 'go learn redux',
+    directions: 'go to the website and then learn redux',
     tags: ['redux'],
   },
   {
@@ -26,8 +26,8 @@ const samplePosts = [
     author: 'Daniel Bugl',
     imgurl: 'learnreact.org',
     description: 'learn react',
-    ingredients: ['learn', 'react'],
-    directions: ['go to website', 'learn react'],
+    ingredients: 'please learn react',
+    directions: 'please go to the website and then learn react',
     tags: ['react'],
   },
   {
@@ -148,8 +148,8 @@ describe('creating posts', () => {
       author: 'Lance Perkins',
       imgurl: 'a fake link',
       description: 'This post is stored in a MongoDB database using Mongoose.',
-      ingredients: ['item 1', 'item 2'],
-      directions: ['step 1', 'step 2'],
+      ingredients: 'item 1 and items 2',
+      directions: 'step 1 and step 2',
       tags: ['mongoose', 'mongodb'],
     }
     const createdPost = await createPost(post)
