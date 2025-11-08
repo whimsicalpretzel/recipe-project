@@ -1,33 +1,33 @@
 import PropTypes from 'prop-types'
+import { User } from './User.jsx'
 
 export function Post({
   title,
-  author,
+  author: userId,
   imgurl,
   description,
   ingredients,
   directions,
 }) {
   return (
-    <article>
+    <article className='recipe-card'>
       <h3>{title}</h3>
-      {author && (
-        <em>
-          Written by <strong>{author}</strong>
-        </em>
+      {userId && (
+        <span>
+          Written by <User id={userId} />
+        </span>
       )}
       <div>{description}</div>
-
-      {imgurl && <img height='200' width='200' src={imgurl} alt={title} />}
-
-      <br />
-      <br />
-
+      {imgurl && (
+        <img
+          height='200'
+          width='200'
+          src={imgurl}
+          alt={title}
+          style={{ display: 'block' }}
+        />
+      )}
       {ingredients}
-
-      <br />
-      <br />
-
       {directions}
     </article>
   )

@@ -1,20 +1,22 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
+import { useAuth } from '../contexts/AuthContext.jsx'
 import { createPost } from '../api/posts.js'
 
 export function CreatePost() {
   const [title, setTitle] = useState('')
-  const [author, setAuthor] = useState('')
   const [imgurl, setImgurl] = useState('')
   const [description, setDescription] = useState('')
   const [ingredients, setIngredients] = useState('')
   const [directions, setDirections] = useState('')
+
+  const [token] = useAuth()
+
   const queryClient = useQueryClient()
   const createPostMutation = useMutation({
     mutationFn: () =>
-      createPost({
+      createPost(token, {
         title,
-        author,
         imgurl,
         description,
         ingredients,
@@ -27,6 +29,8 @@ export function CreatePost() {
     e.preventDefault()
     createPostMutation.mutate()
   }
+
+  if (!token) return <div>Please log in to add a new recipe.</div>
 
   return (
     <form onSubmit={handleSubmit}>
@@ -43,20 +47,7 @@ export function CreatePost() {
           />
         </label>
       </div>
-      <br />
-      <div>
-        <label htmlFor='create-author'>
-          Author:
-          <input
-            type='text'
-            name='create-author'
-            id='create-author'
-            style={{ marginLeft: '5px' }}
-            value={author}
-            onChange={(e) => setAuthor(e.target.value)}
-          />
-        </label>
-      </div>
+
       <br />
       <div>
         <label htmlFor='image-url'>

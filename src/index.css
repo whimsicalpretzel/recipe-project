@@ -1,0 +1,11 @@
+.post-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2em;
+}
+
+.recipe-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
