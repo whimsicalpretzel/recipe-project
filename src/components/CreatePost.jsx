@@ -22,7 +22,14 @@ export function CreatePost() {
         ingredients,
         directions,
       }),
-    onSuccess: () => queryClient.invalidateQueries(['posts']),
+    onSuccess: () => {
+      queryClient.invalidateQueries(['posts'])
+      setTitle('')
+      setImgurl('')
+      setDescription('')
+      setIngredients('')
+      setDirections('')
+    },
   })
 
   const handleSubmit = (e) => {
@@ -33,7 +40,7 @@ export function CreatePost() {
   if (!token) return <div>Please log in to add a new recipe.</div>
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='recipe-form'>
       <div>
         <label htmlFor='create-title'>
           Title:
@@ -63,19 +70,19 @@ export function CreatePost() {
         </label>
       </div>
       <br />
-      <div>
+      {/*<div>
         <label htmlFor='recipe-description'>
           Recipe Description:
           <input
             type='text'
             name='recipe-description'
             id='recipe-description'
-            style={{ marginLeft: '5px' }}
+            style={{ marginLeft: '5px'}}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
         </label>
-      </div>
+      </div>*/}
       <br />
       <label htmlFor='ingredients-text'>
         Ingredients:
@@ -104,6 +111,7 @@ export function CreatePost() {
         type='submit'
         value={createPostMutation.isPending ? 'Creating...' : 'Create'}
         disabled={!title || createPostMutation.isPending}
+        className='submit-button'
       />
       {createPostMutation.isSuccess ? (
         <>

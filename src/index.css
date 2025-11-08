@@ -7,5 +7,22 @@
 .recipe-card {
   display: flex;
   flex-direction: column;
-  gap: 1em;
+}
+
+.recipe-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.submit-button {
+  width: 20%;
+  padding: 0.5em 1.25em;
+  border-radius: 10px;
+}
+
+.submit-button:enabled {
+  color: whitesmoke;
+  background-color: blueviolet;
+  font-size: 1rem;
+  font-weight: bolder;
 }

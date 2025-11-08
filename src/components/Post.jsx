@@ -17,7 +17,7 @@ export function Post({
           Written by <User id={userId} />
         </span>
       )}
-      <div>{description}</div>
+      <div style={{ display: 'none' }}>{description}</div>
       {imgurl && (
         <img
           height='200'
@@ -27,8 +27,10 @@ export function Post({
           style={{ display: 'block' }}
         />
       )}
-      {ingredients}
-      {directions}
+      <p>Ingredients:</p>
+      <p>{ingredients}</p>
+      <p>Directions:</p>
+      <p>{directions}</p>
     </article>
   )
 }
