@@ -36,7 +36,7 @@ export function Recipes() {
       />
       <br />
       <PostSorting
-        fields={['createdAt', 'updatedAt']}
+        fields={['likesCount', 'createdAt', 'updatedAt']}
         value={sortBy}
         onChange={(value) => setSortBy(value)}
         orderValue={sortOrder}
