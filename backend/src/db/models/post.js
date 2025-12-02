@@ -9,6 +9,11 @@ const postSchema = new Schema(
     ingredients: String,
     directions: String,
     tags: [String],
+    likedBy: {
+      type: [{ type: Schema.Types.ObjectId, ref: 'user' }],
+      default: [],
+    },
+    likesCount: { type: Number, default: 0 },
   },
   { timestamps: true },
 )

@@ -26,3 +26,27 @@
   font-size: 1rem;
   font-weight: bolder;
 }
+
+.likes-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.like-btn {
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+.like-btn:disabled {
+  cursor: default;
+  opacity: 0.6; 
+}
+
+.like-img {
+  width: 22px;
+  height: auto;
+  display: block;
+}

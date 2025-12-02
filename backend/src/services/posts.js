@@ -23,9 +23,11 @@ async function listPosts(
 ) {
   return await Post.find(query).sort({ [sortBy]: sortOrder })
 }
+
 export async function listAllPosts(options) {
   return await listPosts({}, options)
 }
+
 export async function listPostsByAuthor(authorUsername, options) {
   const user = await User.findOne({ username: authorUsername })
   if (!user) return []
@@ -39,6 +41,7 @@ export async function listPostsByTag(tags, options) {
 export async function getPostById(postId) {
   return await Post.findById(postId)
 }
+
 export async function updatePost(
   userId,
   postId,
@@ -59,6 +62,24 @@ export async function updatePost(
     { new: true },
   )
 }
+
 export async function deletePost(userId, postId) {
   return await Post.deleteOne({ _id: postId, author: userId })
+}
+
+export async function likedPost(userId, postId) {
+  const post = await Post.findById(postId)
+
+  if (post == null) return null
+
+  if (post.likedBy.some((id) => id.toString() === userId)) {
+    post.likedBy = post.likedBy.filter((id) => id.toString() !== userId)
+    post.likesCount--
+  } else {
+    post.likedBy.push(userId)
+    post.likesCount++
+  }
+
+  await post.save()
+  return post
 }

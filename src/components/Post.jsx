@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import { User } from './User.jsx'
+import { PostLikes } from './PostLikes.jsx'
 
 export function Post({
   title,
@@ -8,6 +9,9 @@ export function Post({
   description,
   ingredients,
   directions,
+  postId,
+  likesCount,
+  likedByUser,
 }) {
   return (
     <article className='recipe-card'>
@@ -31,6 +35,11 @@ export function Post({
       <p>{ingredients}</p>
       <p>Directions:</p>
       <p>{directions}</p>
+      <PostLikes
+        postId={postId}
+        likesCount={likesCount}
+        likedByUser={likedByUser}
+      />
     </article>
   )
 }
@@ -41,4 +50,7 @@ Post.propTypes = {
   imgurl: PropTypes.string,
   ingredients: PropTypes.string,
   directions: PropTypes.string,
+  postId: PropTypes.string,
+  likesCount: PropTypes.number,
+  likedByUser: PropTypes.bool,
 }
