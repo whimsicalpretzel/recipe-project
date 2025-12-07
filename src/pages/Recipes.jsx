@@ -6,11 +6,21 @@ import { Header } from '../components/Header.jsx'
 import { useQuery } from '@tanstack/react-query'
 import { getPosts } from '../api/posts.js'
 import { useState } from 'react'
+import { RecipeModal } from '../components/RecipeModal.jsx'
 
 export function Recipes() {
   const [author, setAuthor] = useState('')
   const [sortBy, setSortBy] = useState('createdAt')
   const [sortOrder, setSortOrder] = useState('descending')
+  const [selectedPost, setSelectedPost] = useState(null)
+
+  function handleOpenRecipe(post) {
+    setSelectedPost(post)
+  }
+
+  function handleCloseModal() {
+    setSelectedPost(null)
+  }
 
   const postsQuery = useQuery({
     queryKey: ['posts', { author, sortBy, sortOrder }],
@@ -43,7 +53,12 @@ export function Recipes() {
         onOrderChange={(orderValue) => setSortOrder(orderValue)}
       />
       <hr />
-      <PostList posts={posts} />
+      <PostList posts={posts} onOpenRecipe={handleOpenRecipe} />
+      <RecipeModal
+        post={selectedPost}
+        isModalOpen={!!selectedPost}
+        onCloseModal={handleCloseModal}
+      />
     </div>
   )
 }

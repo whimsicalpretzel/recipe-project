@@ -3,7 +3,7 @@ import { Post } from './Post.jsx'
 import { useAuth } from '../contexts/AuthContext.jsx'
 import { jwtDecode } from 'jwt-decode'
 
-export function PostList({ posts = [] }) {
+export function PostList({ posts = [], onOpenRecipe }) {
   const [token] = useAuth()
   let currentUserId = null
 
@@ -39,6 +39,7 @@ export function PostList({ posts = [] }) {
             postId={postId}
             likesCount={likesCount}
             likedByUser={likedByUser}
+            onOpenRecipe={() => onOpenRecipe({ ...post, likedByUser })}
           />
         )
       })}
@@ -48,4 +49,5 @@ export function PostList({ posts = [] }) {
 
 PostList.propTypes = {
   posts: PropTypes.arrayOf(PropTypes.shape(Post.propTypes)).isRequired,
+  onOpenRecipe: PropTypes.func.isRequired,
 }
