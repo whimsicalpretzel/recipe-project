@@ -10,7 +10,7 @@ import {
 } from '../services/posts.js'
 import { requireAuth } from '../middleware/jwt.js'
 
-export function postsRoutes(app) {
+export function postsRoutes(app, io) {
   app.get('/api/v1/posts', async (req, res) => {
     const { sortBy, sortOrder, author, tag } = req.query
     const options = { sortBy, sortOrder }
@@ -47,6 +47,11 @@ export function postsRoutes(app) {
   app.post('/api/v1/posts', requireAuth, async (req, res) => {
     try {
       const post = await createPost(req.auth.sub, req.body)
+      io.emit('recipe:created', {
+        _id: post._id,
+        title: post.title,
+        author: post.author,
+      })
       return res.json(post)
     } catch (err) {
       console.error('error creating post', err)

@@ -39,6 +39,7 @@ export function Post({
     </article>
   )
 }
+
 Post.propTypes = {
   title: PropTypes.string.isRequired,
   author: PropTypes.string,
