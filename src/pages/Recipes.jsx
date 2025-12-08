@@ -72,11 +72,13 @@ export function Recipes() {
 
   return (
     <div style={{ padding: 8 }}>
+      {newRecipeBanner && (
+        <NewRecipeBanner
+          recipe={newRecipeBanner}
+          onViewBanner={handleViewNewRecipe}
+        />
+      )}
       <Header />
-      <NewRecipeBanner
-        recipe={newRecipeBanner}
-        onViewBanner={handleViewNewRecipe}
-      />
       <hr />
       <CreatePost />
       <br />
