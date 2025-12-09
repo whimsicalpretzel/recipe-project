@@ -7,8 +7,13 @@ export function NewRecipeBanner({ recipe, onViewBanner }) {
   return (
     <div className='recipe-banner'>
       <p className='recipe-msg'>
-        A new recipe for {recipe.title} was just added by{' '}
-        <User id={recipe.author} />!
+        A new recipe for{' '}
+        <span className='banner-recipe-title'>{recipe.title}</span> was just
+        added by{' '}
+        <span className='user-id-banner'>
+          <User id={recipe.author} />
+        </span>
+        !
       </p>
       <button
         className='see-new-recipe-btn'
