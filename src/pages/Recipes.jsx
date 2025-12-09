@@ -17,15 +17,15 @@ export function Recipes() {
   const [author, setAuthor] = useState('')
   const [sortBy, setSortBy] = useState('createdAt')
   const [sortOrder, setSortOrder] = useState('descending')
-  const [selectedPost, setSelectedPost] = useState(null)
+  const [selectedPostId, setSelectedPostId] = useState(null)
   const [newRecipeBanner, setNewRecipeBanner] = useState(null)
 
   function handleOpenRecipe(post) {
-    setSelectedPost(post)
+    setSelectedPostId(post._id)
   }
 
   function handleCloseModal() {
-    setSelectedPost(null)
+    setSelectedPostId(null)
   }
 
   const postsQuery = useQuery({
@@ -36,6 +36,10 @@ export function Recipes() {
   const queryClient = useQueryClient()
 
   const posts = postsQuery.data ?? []
+
+  const selectedPost = selectedPostId
+    ? posts.find((p) => p._id === selectedPostId)
+    : null
 
   useEffect(() => {
     if (!socket) return
@@ -71,7 +75,7 @@ export function Recipes() {
   }
 
   return (
-    <div style={{ padding: 8 }}>
+    <div>
       {newRecipeBanner && (
         <NewRecipeBanner
           recipe={newRecipeBanner}
@@ -79,19 +83,13 @@ export function Recipes() {
         />
       )}
       <Header />
-      <hr />
       <CreatePost />
-      <br />
-      <hr />
       Filter by:
-      <br />
-      <br />
       <PostFilter
         field='author'
         value={author}
         onChange={(value) => setAuthor(value)}
       />
-      <br />
       <PostSorting
         fields={['createdAt', 'updatedAt', 'likesCount']}
         value={sortBy}
@@ -99,7 +97,6 @@ export function Recipes() {
         orderValue={sortOrder}
         onOrderChange={(orderValue) => setSortOrder(orderValue)}
       />
-      <hr />
       <PostList posts={posts} onOpenRecipe={handleOpenRecipe} />
       <RecipeModal
         post={selectedPost}

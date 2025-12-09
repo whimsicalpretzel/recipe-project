@@ -20,8 +20,6 @@ export function Signup() {
   return (
     <form onSubmit={handleSubmit}>
       <Link to='/'>Back to main page</Link>
-      <br />
-      <br />
       <div>
         <label htmlFor='create-username'>
           Username:
@@ -31,7 +29,6 @@ export function Signup() {
             id='create-username'
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            style={{ marginLeft: '5px' }}
           />
         </label>
       </div>
@@ -45,11 +42,9 @@ export function Signup() {
             id='create-password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            style={{ marginLeft: '5px' }}
           />
         </label>
       </div>
-      <br />
       <input
         type='submit'
         value={signupMutation.isPending ? 'Signing up...' : 'Sign Up'}

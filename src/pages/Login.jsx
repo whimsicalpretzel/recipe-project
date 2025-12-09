@@ -26,8 +26,6 @@ export function Login() {
   return (
     <form onSubmit={handleSubmit}>
       <Link to='/'>Back to main page</Link>
-      <br />
-      <br />
       <div>
         <label htmlFor='create-username'>
           Username:
@@ -41,7 +39,6 @@ export function Login() {
           />
         </label>
       </div>
-      <br />
       <div>
         <label htmlFor='create-password'>
           Password:
@@ -55,7 +52,6 @@ export function Login() {
           />
         </label>
       </div>
-      <br />
       <input
         type='submit'
         value={loginMutation.isPending ? 'Logging in...' : 'Log In'}

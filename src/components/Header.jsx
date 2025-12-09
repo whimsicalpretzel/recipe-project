@@ -8,18 +8,19 @@ export function Header() {
   if (token) {
     const { sub } = jwtDecode(token)
     return (
-      <div>
-        <h1>Welcome to Recipe Share!</h1>
+      <div className='header-logged-in'>
+        <h1>Recipe Share</h1>
         Logged in as <User id={sub} />
-        <br />
         <button onClick={() => setToken(null)}>Logout</button>
       </div>
     )
   }
   return (
-    <div>
-      <h1>Welcome to Recipe Share!</h1>
-      <Link to='/login'>Log In</Link> | <Link to='/signup'>Sign Up</Link>
+    <div className='header-default'>
+      <h1>Recipe Share</h1>
+      <div className='login-links'>
+        <Link to='/login'>Log In</Link> | <Link to='/signup'>Sign Up</Link>
+      </div>
     </div>
   )
 }

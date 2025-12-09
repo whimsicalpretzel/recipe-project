@@ -48,14 +48,12 @@ export function CreatePost() {
             type='text'
             name='create-title'
             id='create-title'
-            style={{ marginLeft: '5px' }}
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
         </label>
       </div>
 
-      <br />
       <div>
         <label htmlFor='image-url'>
           Recipe Picture Link:
@@ -63,62 +61,39 @@ export function CreatePost() {
             type='url'
             name='image-url'
             id='image-url'
-            style={{ marginLeft: '5px' }}
             value={imgurl}
             onChange={(e) => setImgurl(e.target.value)}
           />
         </label>
       </div>
-      <br />
-      {/*<div>
-        <label htmlFor='recipe-description'>
-          Recipe Description:
-          <input
-            type='text'
-            name='recipe-description'
-            id='recipe-description'
-            style={{ marginLeft: '5px'}}
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </label>
-      </div>*/}
-      <br />
+
       <label htmlFor='ingredients-text'>
         Ingredients:
         <textarea
           name='ingredients-text'
           id='ingredients-text'
-          style={{ marginLeft: '5px' }}
           value={ingredients}
           onChange={(e) => setIngredients(e.target.value)}
         />
       </label>
-      <br />
+
       <label htmlFor='directions-text'>
         Directions:
         <textarea
           name='directions-text'
           id='directions-text'
-          style={{ marginLeft: '5px' }}
           value={directions}
           onChange={(e) => setDirections(e.target.value)}
         />
       </label>
-      <br />
-      <br />
+
       <input
         type='submit'
         value={createPostMutation.isPending ? 'Creating...' : 'Create'}
         disabled={!title || createPostMutation.isPending}
         className='submit-button'
       />
-      {createPostMutation.isSuccess ? (
-        <>
-          <br />
-          Post created successfully!
-        </>
-      ) : null}
+      {createPostMutation.isSuccess ? <>Post created successfully!</> : null}
     </form>
   )
 }
